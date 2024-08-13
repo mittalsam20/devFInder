@@ -2,8 +2,10 @@
 
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { createRoomAction } from "./actions";
 import {
   Form,
   FormItem,
@@ -14,8 +16,7 @@ import {
   FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createRoomAction } from "./actions";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
   name: z.string().min(1).max(50),
