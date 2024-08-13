@@ -1,30 +1,33 @@
 "use client";
 
 import { z } from "zod";
-
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-
 import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormItem,
-  FormLabel,
   FormField,
+  FormLabel,
   FormControl,
   FormMessage,
   FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createRoomAction } from "./actions";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(1).max(50),
-  description: z.string().min(1).max(50),
-  language: z.string().min(1).max(50),
+  description: z.string().min(1).max(250),
   githubRepo: z.string().min(1).max(50),
+  // tags: z.string().min(1).max(50),
+  language: z.string().min(1).max(50),
 });
 
-const CreateRoomForm = () => {
+export function CreateRoomForm() {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,14 +35,17 @@ const CreateRoomForm = () => {
       description: "",
       githubRepo: "",
       language: "",
+      // tags: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  };
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    // const room =
+    console.log("sss", values);
+    await createRoomAction(values);
+    router.push("/");
+    // router.push(`/rooms/${room.id}`);
+  }
 
   return (
     <Form {...form}>
@@ -99,10 +105,26 @@ const CreateRoomForm = () => {
           )}
         />
 
+        <FormField
+          control={form.control}
+          name="language"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Tags</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="typescript, nextjs, tailwind" />
+              </FormControl>
+              <FormDescription>
+                List your programming languages, frameworks, libraries so people
+                can find you content
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Button type="submit">Submit</Button>
       </form>
     </Form>
   );
-};
-
-export default CreateRoomForm;
+}
