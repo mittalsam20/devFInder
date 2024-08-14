@@ -22,9 +22,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { DeleteIcon, LogInIcon, LogOutIcon } from "lucide-react";
-
-// import { deleteAccountAction } from "./actions";
+import { deleteAccountAction } from "@/app/actions";
+import { DeleteIcon, LogOutIcon } from "lucide-react";
 
 export function AccountDropdown() {
   const session = useSession();
@@ -45,7 +44,7 @@ export function AccountDropdown() {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={async () => {
-                // await deleteAccountAction();
+                await deleteAccountAction();
                 signOut({ callbackUrl: "/" });
               }}
             >
