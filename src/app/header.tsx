@@ -5,11 +5,10 @@ import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 
 import { LogInIcon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { AccountDropdown } from "@/components/account-dropdown";
-
-// import { deleteAccountAction } from "./actions";
 
 export function Header() {
   const session = useSession();
