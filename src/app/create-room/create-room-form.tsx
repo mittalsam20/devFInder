@@ -17,16 +17,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(1).max(50),
   description: z.string().min(1).max(250),
   githubRepo: z.string().min(1).max(50),
-  // tags: z.string().min(1).max(50),
-  language: z.string().min(1).max(50),
+  tags: z.string().min(1).max(50),
 });
 
 export function CreateRoomForm() {
+  const { toast } = useToast();
+
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -35,17 +37,17 @@ export function CreateRoomForm() {
       name: "",
       description: "",
       githubRepo: "",
-      language: "",
-      // tags: "",
+      tags: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // const room =
-    console.log("sss", values);
-    await createRoomAction(values);
-    router.push("/");
-    // router.push(`/rooms/${room.id}`);
+    const room = await createRoomAction(values);
+    toast({
+      title: "Room Created",
+      description: "Your room was successfully created",
+    });
+    router.push(`/rooms/${room.id}`);
   }
 
   return (
@@ -108,7 +110,7 @@ export function CreateRoomForm() {
 
         <FormField
           control={form.control}
-          name="language"
+          name="tags"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Tags</FormLabel>
