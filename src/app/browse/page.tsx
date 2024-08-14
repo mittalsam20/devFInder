@@ -3,6 +3,7 @@ import Image from "next/image";
 import { unstable_noStore } from "next/cache";
 
 import { RoomCard } from "./room-card";
+import { SearchBar } from "./search-bar";
 import { getRooms } from "@/services/rooms";
 import { Button } from "@/components/ui/button";
 
@@ -23,6 +24,10 @@ export default async function Home({
         <Button asChild>
           <Link href="/create-room">Create Room</Link>
         </Button>
+      </div>
+
+      <div className="mb-8">
+        <SearchBar />
       </div>
 
       <div className="grid grid-cols-3 gap-4">
