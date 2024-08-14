@@ -19,6 +19,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.2.1",
+    "@stream-io/video-react-sdk": "^1.2.20",
     "@vercel/postgres": "^0.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -32,6 +33,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.1",
+    "stream-chat": "^8.37.0",
+    "stream-chat-react": "^11.23.5",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"
