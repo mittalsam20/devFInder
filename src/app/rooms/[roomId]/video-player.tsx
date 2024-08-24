@@ -67,7 +67,6 @@ export function DevFinderVideo({ room }: { room: Room }) {
                 router.push("/");
               }}
             />
-            <CallParticipantsList onClose={() => undefined} />
           </StreamCall>
         </StreamTheme>
       </StreamVideo>

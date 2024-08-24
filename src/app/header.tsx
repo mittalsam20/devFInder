@@ -7,7 +7,7 @@ import { signIn, useSession } from "next-auth/react";
 import { LogInIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/mode-toggle";
+// import { ModeToggle } from "@/components/mode-toggle";
 import { AccountDropdown } from "@/components/account-dropdown";
 
 export function Header() {
@@ -51,7 +51,7 @@ export function Header() {
               <LogInIcon className="mr-2" /> Sign In
             </Button>
           )}
-          <ModeToggle />
+          {/* <ModeToggle /> */}
         </div>
       </div>
     </header>
